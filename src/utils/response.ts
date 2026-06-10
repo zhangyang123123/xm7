@@ -23,6 +23,10 @@ export function successWithPagination<T>(
   return res.status(statusCode).json(body);
 }
 
+export function noContent(res: Response): Response {
+  return res.status(204).send();
+}
+
 export function error(
   res: Response,
   code: string,

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { TagService } from '../services/TagService';
-import { success } from '../utils/response';
+import { success, noContent } from '../utils/response';
 import { CreateTagDto, UpdateTagDto } from '../types';
 
 export class TagController {
@@ -48,7 +48,7 @@ export class TagController {
     try {
       const id = parseInt(req.params.id, 10);
       await TagService.delete(id);
-      return success(res, null as any, 204);
+      return noContent(res);
     } catch (err) {
       next(err);
     }

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { PostService } from '../services/PostService';
-import { success, successWithPagination } from '../utils/response';
+import { success, successWithPagination, noContent } from '../utils/response';
 import { CreatePostDto, UpdatePostDto } from '../types';
 
 export class PostController {
@@ -54,7 +54,7 @@ export class PostController {
     try {
       const id = parseInt(req.params.id, 10);
       await PostService.delete(id);
-      return success(res, null as any, 204);
+      return noContent(res);
     } catch (err) {
       next(err);
     }

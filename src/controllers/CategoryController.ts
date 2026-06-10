@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { CategoryService } from '../services/CategoryService';
-import { success } from '../utils/response';
+import { success, noContent } from '../utils/response';
 import { CreateCategoryDto, UpdateCategoryDto } from '../types';
 
 export class CategoryController {
@@ -48,7 +48,7 @@ export class CategoryController {
     try {
       const id = parseInt(req.params.id, 10);
       await CategoryService.delete(id);
-      return success(res, null as any, 204);
+      return noContent(res);
     } catch (err) {
       next(err);
     }
